@@ -1,0 +1,32 @@
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 24px 80px;
+}
+
+
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  margin-top: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 18px 14px 60px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+}
