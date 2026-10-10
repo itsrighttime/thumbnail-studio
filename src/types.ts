@@ -40,6 +40,7 @@ export interface FormatSpec {
   platformCode: string;
   showLevelDefault: boolean;
   defaultPattern: string;
+  defaultPadding: number;
   layout: FormatLayout;
 }
 
@@ -76,6 +77,8 @@ export interface CodeSettings {
   platform: string;
   start: number;
   step: number;
+  /** Zero-padding width (digits) for {N} and {TOTAL}; 0 = no padding. {N:3} overrides it. */
+  padding: number;
   scope: CodeScope;
 }
 

@@ -46,11 +46,20 @@ Rows without a title are skipped.
 ## Sequence codes
 
 Pattern tokens: `{P}` platform code · `{D}` domain initials · `{T}` type letters · `{L}` level ·
-`{N}` / `{N:3}` counter (zero-padded) · `{TOTAL}` rows in the counter group · `{ROW}` row number in the file.
+`{N}` counter · `{TOTAL}` rows in the counter group · `{ROW}` row number in the file.
 
-- Vertical default: `{P}-{D}-{T}-{N:3}` gives `IG-SD-TH-001`
-- Horizontal default: `{P}-{D}-{T}-{L}-{N:2}/{TOTAL}` gives `YT-SD-TH-L1-01/10`
-- Start number, step, and whether the counter restarts per domain (or domain + level) are adjustable.
+Counter controls (Map columns step):
+
+- **Start at**: first number (default 1)
+- **Step**: increase per row (default 1), so start 10 / step 5 gives 10, 15, 20
+- **Padding (digits)**: zero-padding for `{N}` and `{TOTAL}`; 3 gives `001`, 0 gives `1`. Numbers wider than the padding are never cut.
+- **Counter runs**: across all rows, or restarting for each domain (or domain + level)
+- `{N:3}` in the pattern forces 3 digits for that token and overrides the padding setting.
+
+Defaults:
+
+- Vertical: `{P}-{D}-{T}-{N}` with padding 3 gives `IG-SD-TH-001`
+- Horizontal: `{P}-{D}-{T}-{L}-{N}/{TOTAL}` with padding 2 gives `YT-SD-TH-L1-01/10`
 
 ## Changing the design
 

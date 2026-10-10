@@ -45,7 +45,9 @@ function pad(value: number, width: number): string {
 
 function fill(pattern: string, row: CodeRow, s: CodeSettings, n: number, total: number, rowNo: number): string {
   const out = pattern.replace(/\{([A-Za-z]+)(?::(\d+))?\}/g, (match, name: string, width?: string) => {
-    const w = width ? parseInt(width, 10) : 0;
+    const explicit = width ? parseInt(width, 10) : undefined;
+    // {N} / {TOTAL} follow the padding setting unless the pattern gives its own width ({N:3}).
+    const w = explicit ?? s.padding;
     switch (name.toUpperCase()) {
       case 'P':
         return s.platform;
@@ -60,7 +62,7 @@ function fill(pattern: string, row: CodeRow, s: CodeSettings, n: number, total: 
       case 'TOTAL':
         return pad(total, w);
       case 'ROW':
-        return pad(rowNo, w);
+        return pad(rowNo, explicit ?? 0);
       default:
         return match;
     }
@@ -73,8 +75,9 @@ function fill(pattern: string, row: CodeRow, s: CodeSettings, n: number, total: 
  * Sequence codes for every row, in order.
  *
  * Tokens: {P} platform, {D} domain initials, {T} type letters, {L} level,
- * {N} / {N:3} counter (zero-padded), {TOTAL} / {TOTAL:2} rows in the counter
- * scope, {ROW} position in the file.
+ * {N} counter (start + step, zero-padded to the padding setting; {N:3} forces
+ * 3 digits), {TOTAL} / {TOTAL:2} rows in the counter scope (same padding
+ * rule), {ROW} position in the file.
  */
 export function generateCodes(rows: CodeRow[], s: CodeSettings): string[] {
   const keyOf = (r: CodeRow): string => {

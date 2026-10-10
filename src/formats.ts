@@ -20,7 +20,8 @@ export const FORMATS: Record<FormatId, FormatSpec> = {
     defaultScale: 2, // 1080 x 1920
     platformCode: 'IG',
     showLevelDefault: false,
-    defaultPattern: '{P}-{D}-{T}-{N:3}',
+    defaultPattern: '{P}-{D}-{T}-{N}',
+    defaultPadding: 3,
     layout: {
       header: { cy: 52, maxSize: 44, minSize: 20, maxWidth: 480, tracking: 0 },
       title: { top: 100, bottom: 786, maxWidth: 516, maxSize: 78, minSize: 28, lineHeight: 1.2 },
@@ -40,7 +41,8 @@ export const FORMATS: Record<FormatId, FormatSpec> = {
     defaultScale: 1.5, // 1920 x 1080
     platformCode: 'YT',
     showLevelDefault: true,
-    defaultPattern: '{P}-{D}-{T}-{L}-{N:2}/{TOTAL}',
+    defaultPattern: '{P}-{D}-{T}-{L}-{N}/{TOTAL}',
+    defaultPadding: 2,
     layout: {
       header: { cy: 65, maxSize: 46, minSize: 22, maxWidth: 960, tracking: 0.07 },
       title: { top: 112, bottom: 612, maxWidth: 1030, maxSize: 108, minSize: 36, lineHeight: 1.2 },

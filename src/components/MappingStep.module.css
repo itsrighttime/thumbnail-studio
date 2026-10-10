@@ -49,16 +49,16 @@
   gap: 16px;
 }
 
-.grid3 {
+.grid4 {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 16px;
   margin-top: 14px;
 }
 
 @media (max-width: 640px) {
   .grid2,
-  .grid3 {
+  .grid4 {
     grid-template-columns: 1fr;
   }
 }

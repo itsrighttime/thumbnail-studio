@@ -4,7 +4,37 @@
   padding: 28px 24px 80px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
 
+.logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--accent);
+  border: 1px solid #a3213b;
+  display: grid;
+  place-items: center;
+  font-family: 'Oswald', 'Fira Sans', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.h1 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.tagline {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
 
 .panel {
   background: var(--surface);

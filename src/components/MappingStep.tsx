@@ -25,8 +25,9 @@ const TOKENS: [string, string][] = [
   ['{D}', 'domain initials'],
   ['{T}', 'type letters'],
   ['{L}', 'level'],
-  ['{N:3}', 'counter, 3 digits'],
-  ['{TOTAL:2}', 'rows in the counter group'],
+  ['{N}', 'counter (start, step, padding)'],
+  ['{N:3}', 'counter, forced 3 digits'],
+  ['{TOTAL}', 'rows in the counter group'],
   ['{ROW}', 'row number in the file'],
 ];
 
@@ -186,7 +187,7 @@ export function MappingStep({ format, table, mapping, onMapping, brand, onBrand,
               </li>
             ))}
           </ul>
-          <div className={styles.grid3}>
+          <div className={styles.grid4}>
             <div className={ui.field}>
               <label className={ui.label} htmlFor="platform">
                 Platform code {'{P}'}
@@ -218,6 +219,23 @@ export function MappingStep({ format, table, mapping, onMapping, brand, onBrand,
                 value={code.step}
                 onChange={(e) => onCode({ step: Math.max(1, parseInt(e.target.value, 10) || 1) })}
               />
+            </div>
+            <div className={ui.field}>
+              <label className={ui.label} htmlFor="padding">
+                Padding (digits)
+              </label>
+              <input
+                id="padding"
+                type="number"
+                min={0}
+                max={8}
+                className={ui.input}
+                value={code.padding}
+                onChange={(e) => onCode({ padding: Math.min(8, Math.max(0, parseInt(e.target.value, 10) || 0)) })}
+              />
+              <p className={ui.hint}>
+                {code.padding > 0 ? `${code.start} → ${String(code.start).padStart(code.padding, '0')}` : 'No leading zeros'}
+              </p>
             </div>
           </div>
           <div className={ui.field} style={{ marginTop: 14 }}>
